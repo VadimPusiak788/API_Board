@@ -7,7 +7,7 @@ class Post(models.Model):
     link = models.URLField(max_length=200)
     creation_date = models.DateTimeField(auto_now_add=True)
     upvote = models.ManyToManyField(User, related_name="upvote_user", blank=True)
-    total = models.IntegerField(default=0)
+    total = models.PositiveIntegerField(db_index=True, default=0)
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="post_user")
 
     def __str__(self):
